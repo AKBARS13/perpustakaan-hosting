@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="icon" href="https://marketplace.canva.com/EAGBFKkViVY/2/0/1600w/canva-biru-putih-kuning-modern-logo-sekolah-2108D-QxZtE.jpg" type="image/png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="https://marketplace.canva.com/EAGBFKkViVY/2/0/1600w/canva-biru-putih-kuning-modern-logo-sekolah-2108D-QxZtE.jpg" alt="logo" width="30" height="30" class="d-inline-block align-text-top">
+                Selamat Datang, <strong>{{ username }}</strong>!
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!--Menu di navbar-->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <!--Menu item biasa-->
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href{="{{ url_for('dashboard')}}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{{ url_for('profile') }}">Profile</a>
+                    </li>
+                    
+                    <!--Menu dengan Dropdown-->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria expanded="false">
+                           Master Data
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="{{url_for('mahasiswa')}}">Data mahasiswa</a></li>
+                            <li><a class="dropdown-item" href="#">Data Dosen</a></li>
+                            <li><a class="dropdown-item" href="#">Data Mata Kuliah</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#">Data Ruangan</a></li>
+                        </ul>
+                      </li>
+                    </ul>
+                
+                <!--Tombol logout disebelah atas-->
+                <a href="{{ url_for('logout') }}" class="btn btn-danger" id="LogoutButton">Logout</a>
+               </div>
+            
+            </div>
+        </nav>
+    
+
+    <div class="container mt-5">
+    <div class="card p-4 shadow-lg text-center">
+        <h2 class="mb-4">Welcome to the Dashboard!</h2>
+        <p>You have successfully logged in.</p>
+    </div>
+</div>
+
+<script>
+    // JavaScript untuk memunculkan pop-up konfirmasi
+    document.getElementById('logoutButton').addEventListener('click', function(event) {
+        event.preventDefault(); // Mencegah default action dari link
+        var confirmation = confirm('Anda yakin ingin logout?');
+        if (confirmation) {
+            window.location.href = "{{ url_for('logout') }}";
+        }
+    });
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

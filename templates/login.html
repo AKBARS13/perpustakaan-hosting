@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Penetapan dokumen HTML5 dengan bahasa Inggris -->
+
+<head>
+  <meta charset="UTF-8">
+  <!-- Menentukan karakter yang digunakan dalam dokumen adalah UTF-8 -->
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Mengatur skala tampilan halaman agar responsif di berbagai perangkat -->
+
+  <title>Login</title>
+  <!-- Judul halaman yang akan ditampilkan di tab browser -->
+
+  <!-- Menambahkan favicon -->
+  <link rel="icon" href="https://marketplace.canva.com/EAGBFKkViVY/2/0/1600w/canva-biru-putih-kuning-modern-logo-sekolah-2108D-QxZtE.jpg" type="image/png">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Menghubungkan file CSS Bootstrap untuk styling yang lebih cantik dan responsif -->
+</head>
+
+<body class="bg-light">
+  <!-- Body dengan latar belakang warna terang dari Bootstrap -->
+
+  <div class="container mt-5">
+    <!-- Membungkus elemen utama dalam kontainer Bootstrap dengan margin atas (mt-5) -->
+      
+    <div class="row justify-content-center">
+      <!-- Mengatur konten agar berada di tengah secara horizontal -->
+    
+     <div class="col-md-6">
+         <!--Membuat kolom dengan lebar 6 unit pada layar medium (md) dan lebih besar-->
+         
+      <div class="card p-4 shadow-lg" >
+        <!-- Card Bootstrap dengan padding 4 satuan dan bayangan besar -->
+
+          <!--Menambahkan logo di atas form lain-->
+        <div class="text-center mb-4">
+          <img src="https://marketplace.canva.com/EAGBFKkViVY/2/0/1600w/canva-biru-putih-kuning-modern-logo-sekolah-2108D-QxZtE.jpg" alt="School Logo" width="100">
+        </div>
+
+        <h2 class="text-center mb-4">Login Form</h2>
+        <!-- Judul besar di tengah dengan margin bawah 4 satuan -->
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        {% for category, message in messages %}
+        <div class="alert alert-{{ category }}">{{ message }}</div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+        <!-- Menampilkan pesan yang di-flash dari server (misalnya error atau sukses) -->
+        <!-- Menggunakan komponen Bootstrap alert untuk styling pesan -->
+
+        <form action="{{ url_for('login') }}" method="POST">
+          <!-- Form login dengan metode POST, mengirimkan data ke endpoint 'login' -->
+
+          <div class="mb-3">
+            <label for="username" class="form-label">Username</label>
+            <input type="text" class="form-control" id="username" name="username" required>
+          </div>
+          <!-- Input untuk username dengan gaya Bootstrap form-control -->
+
+          <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" class="form-control" id="password" name="password" required>
+          </div>
+          <!-- Input untuk password dengan gaya Bootstrap -->
+
+          <button type="submit" class="btn btn-primary w-100">Login</button>
+          <!-- Tombol submit dengan warna biru dan lebar penuh -->
+        </form>
+            
+        <p class="text-center mt-3">Don't have an account? <a href="{{ url_for('register') }}">Register here</a></p>
+          <!--Paragraph dengan tautan ke halaman registrasi, teks berada di tengah-->
+       </div>
+      </div>
+     </div>
+    </div>
+ </body>
+</html>
